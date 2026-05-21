@@ -1,8 +1,8 @@
 services:
-  mysql-walletsquire:
+  mysql:
     image: mysql:9.6.0
-    hostname: mysql-walletsquire-local
-    container_name: mysql-walletsquire-local
+    hostname: mysql-local
+    container_name: mysql-local
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
