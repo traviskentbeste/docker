@@ -1,0 +1,16 @@
+services:
+  maildev:
+    image: maildev/maildev:latest
+    hostname: maildev-local
+    container_name: maildev-local
+    restart: unless-stopped
+    ports:
+      - "1080:1080"  # Web UI
+      - "1025:1025"  # SMTP
+    environment:
+      # Optional: auth for the web UI
+      MAILDEV_WEB_USER: admin
+      MAILDEV_WEB_PASS: admin
+      # Optional: limit message size (in bytes)
+      MAILDEV_INCOMING_USER: user
+      MAILDEV_INCOMING_PASS: user

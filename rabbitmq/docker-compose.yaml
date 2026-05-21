@@ -1,0 +1,26 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq-local
+    container_name: rabbitmq-local
+    restart: unless-stopped
+
+    ports:
+      - "5672:5672"     # AMQP protocol (apps connect here)
+      - "15672:15672"   # Management UI
+
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+    volumes:
+      - ~/projects/BlueSkyCloudServers/devops/development-environment/data/rabbitmq:/var/lib/rabbitmq
+
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  rabbitmq_data:

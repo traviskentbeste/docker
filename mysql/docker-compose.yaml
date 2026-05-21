@@ -1,0 +1,12 @@
+services:
+  mysql-walletsquire:
+    image: mysql:9.6.0
+    hostname: mysql-walletsquire-local
+    container_name: mysql-walletsquire-local
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../data/mysql:/var/lib/mysql

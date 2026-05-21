@@ -1,0 +1,31 @@
+community:
+  enabled: true
+
+plugins:
+  install:
+    - https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/25.9.0/sonarqube-community-branch-plugin-25.9.0.jar
+sonarProperties:
+  sonar.web.javaAdditionalOpts: "-javaagent:/opt/sonarqube/extensions/plugins/sonarqube-community-branch-plugin-25.9.0.jar=web"
+  sonar.ce.javaAdditionalOpts: "-javaagent:/opt/sonarqube/extensions/plugins/sonarqube-community-branch-plugin-25.9.0.jar=ce"
+
+extraVolumes:
+  - name: webapp
+    emptyDir:
+      sizeLimit: 50Mi
+extraVolumeMounts:
+  - name: webapp
+    mountPath: /opt/sonarqube/web
+extraInitContainers:
+  - name: download-webapp
+    image: busybox:1.37
+    volumeMounts:
+      - name: webapp
+        mountPath: /web
+    command:
+      - sh
+      - -c
+      - wget -O /tmp/sonarqube-webapp.zip https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/25.9.0/sonarqube-webapp.zip &&
+        unzip -o /tmp/sonarqube-webapp.zip -d /web &&
+        chmod -R 755 /web &&
+        chown -R 1000:0 /web &&
+        rm -f /tmp/sonarqube-webapp.zip
