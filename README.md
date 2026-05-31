@@ -9,9 +9,9 @@ docker-compose up -d
 # List of programs to bring up in docker
 
 * sonarqube
-* redis
-* mysql
-* keycloak
+* redis - runs on port 6379
+* mysql - runs on port 3306
+* keycloak - runs on port 8070
 * kafka
 * maildev
 * developer
