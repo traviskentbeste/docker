@@ -14,7 +14,7 @@ services:
       RABBITMQ_DEFAULT_PASS: admin
 
     volumes:
-      - ~/projects/BlueSkyCloudServers/devops/development-environment/data/rabbitmq:/var/lib/rabbitmq
+      - ../data/rabbitmq:/var/lib/rabbitmq
 
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_running"]
