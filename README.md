@@ -13,8 +13,8 @@ docker-compose up -d
 * mysql - runs on port 3306
 * keycloak - runs on port 8070
 * rabbitmq - runs on port 5672 (ampq) and 15672 (ui)
+* maildev - runs on port 1025 (mailport) and 1080 (ui)
 * kafka
-* maildev
 * developer
 
 # Notes
