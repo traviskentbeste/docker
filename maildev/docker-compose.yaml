@@ -14,3 +14,9 @@ services:
       # Optional: limit message size (in bytes)
       MAILDEV_INCOMING_USER: user
       MAILDEV_INCOMING_PASS: user
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    external: true

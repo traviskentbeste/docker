@@ -19,11 +19,12 @@ services:
       # Optional: hostname settings (uncomment and adjust if needed)
       # KC_HOSTNAME: keycloak
       # KC_PROXY: edge
-
     command:
       - start-dev
     ports:
       - "8070:8080"
+    networks:
+      - local-net
 
   keycloak-postgres:
     image: postgres:16-alpine
@@ -35,3 +36,10 @@ services:
       POSTGRES_PASSWORD: keycloak
     volumes:
       - ../data/keycloak:/var/lib/postgresql/data   # local folder for DB data
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    external: true
+

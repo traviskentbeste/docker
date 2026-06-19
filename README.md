@@ -8,6 +8,9 @@ docker-compose up -d
 
 # List of programs to bring up in docker
 
+run
+docker network create local-net
+
 * sonarqube
 * redis - runs on port 6379
 * mysql - runs on port 3306
